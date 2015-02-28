@@ -51,8 +51,7 @@ public class FileMessageReader implements Closeable {
         } catch (EOFException e) {
             throw new IllegalMessageFormatException("Wrong message format in file \"" + fileName + "\". Unexcepted end of message.", e);
         } catch (NumberFormatException nfe) {
-            System.err.println();
-            throw new IllegalMessageFormatException("Wrong message format in file \"" + fileName + "\". Unknown number of lines.");
+            throw new IllegalMessageFormatException("Wrong message format in file \"" + fileName + "\". Unknown number of lines.",nfe);
         }
 
         return new Message(lines);
