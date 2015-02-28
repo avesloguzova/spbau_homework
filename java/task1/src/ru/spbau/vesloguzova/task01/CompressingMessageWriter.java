@@ -35,8 +35,10 @@ public class CompressingMessageWriter implements MessageWriter, Closeable {
             buffer = new Message(message);
         } else {
             buffer.append(message);
-            writer.writeMessage(buffer);
+            Message tmp = buffer;
             buffer = null;
+            writer.writeMessage(tmp);
+
         }
 
     }
