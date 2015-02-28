@@ -3,8 +3,16 @@ package ru.spbau.vesloguzova.task01;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * Main class of application
+ */
 public class Main {
 
+    /**
+     * Gets messages from file given the name as command line argument.
+     * Writes compressed messages to file or standard output.
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         if (args.length < 1) {
             System.out.println("Usage: java -jar task01.jar <input-filename> [output-filename]");
