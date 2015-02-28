@@ -27,7 +27,9 @@ public class Main {
                 writer.writeMessage(msg);
             }
         } catch (FileNotFoundException e) {
-            System.err.println("Input or output file not found.\n" + e.getMessage());
+            System.err.println("Input file not found or output file is a directory rather than a regular file," +
+                    " does not exist but cannot be created, or cannot be opened for any other reason .\n"
+                    + e.getMessage());
             processException(e);
         } catch (IllegalMessageFormatException e) {
             System.err.println("Illegal message format was detected.\n" + e.getMessage());
