@@ -26,23 +26,27 @@ public class Main {
                 Message msg = reader.readMessage();
                 writer.writeMessage(msg);
             }
+            writer.flush();
         } catch (FileNotFoundException e) {
             System.err.println("Input file not found or output file is a directory rather than a regular file," +
-                    " does not exist but cannot be created, or cannot be opened for any other reason .\n"
-                    + e.getMessage());
+                    " does not exist but cannot be created, or cannot be opened for any other reason .");
+            System.err.println(e.getMessage());
             processException(e);
         } catch (IllegalMessageFormatException e) {
-            System.err.println("Illegal message format was detected.\n" + e.getMessage());
+            System.err.println("Illegal message format was detected.");
+            System.err.println(e.getMessage());
             processException(e);
         } catch (IOException e) {
-            System.err.println("Unexpected error while reading input or writing output.\n" + e.getMessage());
+            System.err.println("Unexpected error while reading input or writing output.");
+            System.err.println(e.getMessage());
             processException(e);
         }
     }
 
-    private static void processException(Exception exception) {
+    private static void processException(Throwable exception) {
         for (Throwable e : exception.getSuppressed()) {
             System.err.println(e.getMessage());
+            processException(e);
         }
 
     }

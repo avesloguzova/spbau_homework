@@ -1,6 +1,6 @@
 package ru.spbau.vesloguzova.task01;
 
-import java.io.Closeable;
+import java.io.Flushable;
 import java.io.IOException;
 
 /**
@@ -9,7 +9,7 @@ import java.io.IOException;
  *
  * @author avesloguzova
  */
-public class CompressingMessageWriter implements MessageWriter, Closeable {
+public class CompressingMessageWriter implements MessageWriter, Flushable {
 
     private final MessageWriter writer;
     private Message buffer = null;
@@ -50,10 +50,17 @@ public class CompressingMessageWriter implements MessageWriter, Closeable {
      */
     @Override
     public void close() throws IOException {
-        if (null != buffer) {
-            writer.writeMessage(buffer);
-        }
         writer.close();
+    }
 
+    /**
+     * Flush buffered message
+     *
+     * @throws IOException if an input or output error occurs during writing messages.
+     */
+    @Override
+    public void flush() throws IOException {
+        writer.writeMessage(buffer);
+        buffer = null;
     }
 }
