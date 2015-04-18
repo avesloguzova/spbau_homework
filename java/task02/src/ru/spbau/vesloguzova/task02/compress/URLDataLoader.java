@@ -1,4 +1,4 @@
-package ru.spbau.vesloguzova.task02;
+package ru.spbau.vesloguzova.task02.compress;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
@@ -8,14 +8,16 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- * Created by av on 3/14/15.
+ * Loads contents of web-page by URLConnection
+ *
+ * @author avesloguzova
  */
 public class URLDataLoader implements Closeable {
     private static final int BUFFER_SIZE = 1024;
     final InputStream inputStream;
 
     public URLDataLoader(URL url) throws IOException {
-        URLConnection connection =  url.openConnection();
+        URLConnection connection = url.openConnection();
         inputStream = connection.getInputStream();
     }
 
