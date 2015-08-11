@@ -121,6 +121,11 @@ void test_lazy_wstring()
     assert(str1 == str2);
 }
 
+void test_lazy_istring(){
+    lazy_istring str1 = "abc";
+    lazy_istring str2 = "ABc";
+    assert(str1==str2);
+}
 int main() {
     test_internal_typedefs();
     test_empty_string();
@@ -132,7 +137,7 @@ int main() {
     test_c_str();
     test_swap();
     test_lazy_wstring();
-
+    test_lazy_istring();
     std::cout << "ok!" << std::endl;
     return 0;
 }
